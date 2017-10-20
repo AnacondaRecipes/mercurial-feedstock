@@ -1,17 +1,20 @@
-{% set version = "4.3.1" %}
-{% set sha256 = "2b12f02e3a452adff4ec9cf007017bab0cadb3f37eaf12f4b25a662df73618a2" %}
+{% set name = "mercurial" %}
+{% set version = "4.3.3" %}
+{% set file_ext = "tar.gz" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "47a63c78698bc735667984bbc5b76619ff29a38d742f20cdf9f44cce59752374" %}
 
 package:
-  name: mercurial
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: mercurial-{{ version }}.tar.gz
-  url: https://mercurial-scm.org/release/mercurial-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  fn: {{ name }}-{{ version }}.{{ file_ext }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
+  {{ hash_type }}: {{ hash_value }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [py3k]
   script: python setup.py install
 
@@ -21,11 +24,28 @@ requirements:
     - setuptools  # [win]
   run:
     - python
-    - setuptools  # [win]
+    - pygments
 
 test:
   commands:
     - hg --version
+  imports:
+    - hgdemandimport
+    - hgext
+    - hgext.convert
+    - hgext.fsmonitor
+    - hgext.fsmonitor.pywatchman
+    - hgext.fsmonitor.pywatchman.bser
+    - hgext.highlight
+    - hgext.largefiles
+    - hgext.zeroconf
+    - hgext3rd
+    - mercurial
+    - mercurial.cext
+    - mercurial.cffi
+    - mercurial.hgweb
+    - mercurial.httpclient
+    - mercurial.pure
 
 about:
   home: http://mercurial-scm.org
@@ -42,3 +62,4 @@ about:
 extra:
   recipe-maintainers:
     - ngoldbaum
+    - nehaljwani
