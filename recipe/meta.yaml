@@ -23,11 +23,28 @@ requirements:
     - {{ compiler('c') }}
   run:
     - python
+    - pygments
     - setuptools  # [win]
 
 test:
   commands:
     - hg --version
+  imports:
+    - hgdemandimport
+    - hgext
+    - hgext.convert
+    - hgext.fsmonitor
+    - hgext.fsmonitor.pywatchman
+    - hgext.fsmonitor.pywatchman.bser
+    - hgext.highlight
+    - hgext.largefiles
+    - hgext.zeroconf
+    - hgext3rd
+    - mercurial
+    - mercurial.cext
+    - mercurial.cffi
+    - mercurial.hgweb
+    - mercurial.pure
 
 about:
   home: http://mercurial-scm.org
@@ -44,3 +61,4 @@ about:
 extra:
   recipe-maintainers:
     - ngoldbaum
+    - nehaljwani
