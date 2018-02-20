@@ -1,5 +1,5 @@
-{% set version = "4.4" %}
-{% set sha256 = "234af4a67565c85923b0a1910c704ab44bcf12f69b85532687208776563d87de" %}
+{% set version = "4.5" %}
+{% set sha256 = "4d9338d9f9d88dc90b836d1227a3677e3347efaf2a118cc97d7fd1f605f1f265" %}
 
 package:
   name: mercurial
@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [py3k]
   script: python setup.py install
 
@@ -23,11 +23,29 @@ requirements:
     - {{ compiler('c') }}
   run:
     - python
+    - pygments
     - setuptools  # [win]
 
 test:
   commands:
     - hg --version
+  imports:
+    - hgdemandimport
+    - hgext
+    - hgext.convert
+    - hgext.fsmonitor
+    - hgext.fsmonitor.pywatchman
+    - hgext.fsmonitor.pywatchman.bser
+    - hgext.highlight
+    - hgext.largefiles
+    - hgext.zeroconf
+    - hgext3rd
+    - mercurial
+    - mercurial.cext
+    - mercurial.cffi
+    - mercurial.hgweb
+    - mercurial.httpclient
+    - mercurial.pure
 
 about:
   home: http://mercurial-scm.org
@@ -44,3 +62,4 @@ about:
 extra:
   recipe-maintainers:
     - ngoldbaum
+    - nehaljwani
