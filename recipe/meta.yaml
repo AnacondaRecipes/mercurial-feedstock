@@ -23,11 +23,32 @@ requirements:
     - setuptools  # [win]
   run:
     - python
+    - pygments
     - setuptools  # [win]
 
 test:
   commands:
     - hg --version
+  imports:
+    - hgdemandimport
+    - hgext
+    - hgext.convert
+    - hgext.fsmonitor
+    - hgext.fsmonitor.pywatchman
+    - hgext.fsmonitor.pywatchman.bser
+    - hgext.highlight
+    - hgext.infinitepush
+    - hgext.largefiles
+    - hgext.lfs
+    - hgext.narrow
+    - hgext.zeroconf
+    - hgext3rd
+    - mercurial
+    - mercurial.cext
+    - mercurial.cffi
+    - mercurial.hgweb
+    - mercurial.pure
+    - mercurial.utils
 
 about:
   home: http://mercurial-scm.org
@@ -44,3 +65,4 @@ about:
 extra:
   recipe-maintainers:
     - ngoldbaum
+    - nehaljwani
